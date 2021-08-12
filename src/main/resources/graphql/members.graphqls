@@ -1,0 +1,43 @@
+type Member {
+    id: Int!
+    loginId: String!
+    password: String!
+    name: String
+    roles: [Role]
+}
+
+type MemberEntity {
+    id: Int!
+    loginId: String!
+    password: String!
+    name: String
+    roles: [RoleEntity]
+}
+
+type Role {
+    id: Int!
+    role: String
+}
+
+type RoleEntity {
+    id: Int!
+    role: String
+}
+
+input MemberParam {
+    loginId: String!
+    password: String!
+    name: String
+}
+
+# 루트 쿼리 (Root Query)
+type Query {
+    getMember(id: Int!) : Member!
+    getMemberEntity(id: Int!) : MemberEntity!
+}
+
+# 루트 뮤테이션 (Root Mutation)
+type Mutation {
+    createMember(memberParam: MemberParam) : Member!
+    deleteMember(id: Int!) : Boolean!
+}
